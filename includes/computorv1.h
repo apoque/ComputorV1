@@ -15,8 +15,9 @@
 
 typedef struct				s_comp
 {
-		long double			*nb;
-		unsigned int		power;
+		long double			*nb1;
+		long double			*nb2;
+		int					power;
 		char				*str;
 }							t_comp;
 
