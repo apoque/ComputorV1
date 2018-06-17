@@ -16,10 +16,23 @@
 
 typedef struct				s_comp
 {
-		long double			nb1[3];
-		long double			nb2[3];
+		long double			*nb[2];
 		int					power;
+		int					new_power;
 		char				*str;
 }							t_comp;
 
+typedef struct				s_info
+{
+		int					i;
+		long double			nb;
+		int					power;
+		short				eq;
+		short				neg;
+}							t_info;
+
+long double	ft_negpower(int i);
+void		ft_iseq(char *str, int *i, short *eq);
+void		ft_isneg(char *str, int *i, short *neg);
+void		ft_solve(t_comp *cp);
 #endif

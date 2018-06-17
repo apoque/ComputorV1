@@ -36,6 +36,8 @@ INC_PATH = includes\
 # SOURCES
 SRC_NAME = \
 		   main.c \
+		   annex.c \
+		   solver.c \
 
 
 OBJ_NAME = $(SRC_NAME:.c=.o)
