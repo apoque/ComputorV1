@@ -6,7 +6,7 @@
 /*   By: apoque <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/15 17:48:07 by apoque            #+#    #+#             */
-/*   Updated: 2018/06/15 19:17:57 by apoque           ###   ########.fr       */
+/*   Updated: 2018/06/25 18:12:19 by apoque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ void	ft_solve(t_comp *cp)
 		i++;
 	}
 	i = cp->power;
-	while (i < 0 && cp->nb[0][i] == 0)
+	while (i > 0 && cp->nb[0][i] == 0)
 		i--;
 	cp->new_power = i;
 	ft_print_reduced_form(cp);

@@ -6,7 +6,7 @@
 /*   By: apoque <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/15 17:48:07 by apoque            #+#    #+#             */
-/*   Updated: 2018/06/15 19:17:57 by apoque           ###   ########.fr       */
+/*   Updated: 2018/06/25 17:22:57 by apoque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,15 @@
 #define B cp->nb[0][1]
 #define A cp->nb[0][2]
 
-
-
 void	ft_neg_disc(t_comp *cp, long double disc)
 {
 	long double	sol1;
 	long double	sol2;
 
 	ft_putstr("Discriminant is strictly negative, the two solutions are:\n");
-	sol1 = -B / ( 2 * A);
+	sol1 = -B / (2 * A);
 	sol2 = ft_float_square(-disc) / (2 * A);
-		if (sol1 < 0)
+	if (sol1 < 0)
 	{
 		ft_putchar('-');
 		sol1 = -sol1;
@@ -76,7 +74,7 @@ void	ft_second_degree(t_comp *cp)
 	disc = (B * B) - (4 * A * C);
 	if (disc == 0)
 	{
-		sol = -B / ( 2 * A);
+		sol = -B / (2 * A);
 		ft_putstr("The solution is:\n");
 		if (sol < 0)
 		{

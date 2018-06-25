@@ -6,7 +6,7 @@
 /*   By: apoque <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/15 17:48:07 by apoque            #+#    #+#             */
-/*   Updated: 2018/06/15 19:17:57 by apoque           ###   ########.fr       */
+/*   Updated: 2018/06/25 17:21:50 by apoque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 long double	ft_float_square(long double nb)
 {
-	long double	res;
+	long double		res;
 	short			limit;
 	short			i;
 
@@ -25,7 +25,7 @@ long double	ft_float_square(long double nb)
 		return (0);
 	while (i < limit)
 	{
-		res = (res + nb / res ) / 2;
+		res = (res + nb / res) / 2;
 		i++;
 	}
 	return (res);

@@ -6,12 +6,14 @@
 /*   By: apoque <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/15 17:48:07 by apoque            #+#    #+#             */
-/*   Updated: 2018/06/25 14:12:08 by apoque           ###   ########.fr       */
+/*   Updated: 2018/06/25 18:14:31 by apoque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "computorv1.h"
 #define S cp->str
+#define C cp->str[info.i]
+#define SIZE sizeof(long double)
 
 long double	ft_db(char *str, int i)
 {
@@ -30,43 +32,40 @@ long double	ft_db(char *str, int i)
 	j = 1;
 	while (str[i] != '\0' && (ft_isdigit(str[i]) == 1 || str[i] == '.'))
 	{
-		if (str[i] !='\0' && str[i] == '.')
+		if (str[i] != '\0' && str[i] == '.')
 			pt = 1;
 		else if (pt == 0 && str[i] != '\0' && ft_isdigit(str[i]) == 1)
-		{
-			nb = nb + ft_power(10, power - 1) * (str[i] - 48);
-			power--;
-		}
+			nb = nb + ft_power(10, power-- - 1) * (str[i] - 48);
 		else if (pt == 1 && str[i] != '\0' && ft_isdigit(str[i]) == 1)
-		{
-			nb = nb + ft_negpower(j) * (str[i] - 48);
-			j++;
-		}
+			nb = nb + ft_negpower(j++) * (str[i] - 48);
 		i++;
 	}
 	return (nb);
 }
 
-void		ft_display_info(t_comp *cp)
-{
-	ft_printf("_______INFO_________\n\n");
-	ft_printf("str = [%s]\n", cp->str);
-	ft_printf("power max = %i\n", cp->power);
-	int i;
-	i = 0;
-	while (i <= cp->power)
-	{
-		printf("nb1^%i = %f\n", i, (double)cp->nb[0][i]);
-		i++;
-	}
-	i = 0;
-	while (i <= cp->power)
-	{
-		printf("nb2^%i = %f\n", i, (double)cp->nb[1][i]);
-		i++;
-	}
-	ft_printf("____________________\n\n");
-}
+/*
+**void		ft_display_info(t_comp *cp)
+**{
+**	int i;
+**
+**	i = 0;
+**	ft_printf("_______INFO_________\n\n");
+**	ft_printf("str = [%s]\n", cp->str);
+**	ft_printf("power max = %i\n", cp->power);
+**	while (i <= cp->power)
+**	{
+**		printf("nb1^%i = %f\n", i, (double)cp->nb[0][i]);
+**		i++;
+**	}
+**	i = 0;
+**	while (i <= cp->power)
+**	{
+**		printf("nb2^%i = %f\n", i, (double)cp->nb[1][i]);
+**		i++;
+**	}
+**	ft_printf("____________________\n\n");
+**}
+*/
 
 void		ft_get_info(t_comp *cp)
 {
@@ -81,8 +80,7 @@ void		ft_get_info(t_comp *cp)
 		{
 			info.nb = (info.neg == 0) ? ft_db(S, info.i) : -ft_db(S, info.i);
 			info.neg = 0;
-			while (cp->str[info.i] != '\0' &&
-				(ft_isdigit(cp->str[info.i]) == 1 || cp->str[info.i] == '.'))
+			while (C != '\0' && (ft_isdigit(C) == 1 || C == '.'))
 				info.i++;
 		}
 		else if (cp->str[info.i] == 'X')
@@ -136,15 +134,14 @@ void		ft_treat(char *str)
 	cp.power = ft_get_power(str);
 	if (cp.power >= 0)
 	{
-		if (!(cp.nb[0] = (long double *)ft_memalloc(sizeof(long double) * (cp.power + 1))))
+		if (!(cp.nb[0] = (long double *)ft_memalloc(SIZE * (cp.power + 1))))
 			exit(EXIT_FAILURE);
-		if (!(cp.nb[1] = (long double *)ft_memalloc(sizeof(long double) * (cp.power + 1))))
+		if (!(cp.nb[1] = (long double *)ft_memalloc(SIZE * (cp.power + 1))))
 			exit(EXIT_FAILURE);
 		ft_get_info(&cp);
 		ft_solve(&cp);
 		free(cp.nb[0]);
 		free(cp.nb[1]);
-		//free(cp.nb);
 	}
 	else
 		ft_printf("Wrong argument\n");
