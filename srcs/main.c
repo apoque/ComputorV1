@@ -6,7 +6,7 @@
 /*   By: apoque <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/15 17:48:07 by apoque            #+#    #+#             */
-/*   Updated: 2018/06/15 19:17:57 by apoque           ###   ########.fr       */
+/*   Updated: 2018/06/25 14:12:08 by apoque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,7 @@ int			ft_get_power(char *str)
 	return (power);
 }
 
-void		ft_treatment(char *str)
+void		ft_treat(char *str)
 {
 	t_comp	cp;
 
@@ -144,7 +144,7 @@ void		ft_treatment(char *str)
 		ft_solve(&cp);
 		free(cp.nb[0]);
 		free(cp.nb[1]);
-		free(cp.nb);
+		//free(cp.nb);
 	}
 	else
 		ft_printf("Wrong argument\n");
@@ -159,12 +159,10 @@ int			main(int ac, char **av)
 		ft_printf("No argument given\n");
 	while (i < ac - 1)
 	{
-		ft_treatment(av[i + 1]);
+		ft_treat(av[i + 1]);
 		i++;
 		if (ac > i + 1)
 			ft_printf("\n");
 	}
-	while (1)
-		;
 	return (0);
 }
