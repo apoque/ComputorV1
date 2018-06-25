@@ -12,6 +12,25 @@
 
 #include "computorv1.h"
 
+long double	ft_float_square(long double nb)
+{
+	long double	res;
+	short			limit;
+	short			i;
+
+	res = 1;
+	i = 1;
+	limit = 100;
+	if (nb <= 0)
+		return (0);
+	while (i < limit)
+	{
+		res = (res + nb / res ) / 2;
+		i++;
+	}
+	return (res);
+}
+
 long double	ft_negpower(int i)
 {
 	long double nb;

@@ -96,7 +96,6 @@ void		ft_get_info(t_comp *cp)
 		else
 			info.i++;
 	}
-	ft_display_info(cp);
 }
 
 int			ft_get_power(char *str)
@@ -105,10 +104,10 @@ int			ft_get_power(char *str)
 	int	power;
 	int	i;
 
-	i = 0;
+	i = -1;
 	power = -1;
 	len = ft_strlen(str);
-	while (str[i] != '\0' && i < len)
+	while (str[++i] != '\0' && i < len)
 	{
 		while (str[i] != 'X' && str[i] != '\0' && i < len)
 			i++;
@@ -124,7 +123,6 @@ int			ft_get_power(char *str)
 			if (power < 1)
 				power = 1;
 		}
-		i++;
 	}
 	return (power);
 }
@@ -144,6 +142,9 @@ void		ft_treatment(char *str)
 			exit(EXIT_FAILURE);
 		ft_get_info(&cp);
 		ft_solve(&cp);
+		free(cp.nb[0]);
+		free(cp.nb[1]);
+		free(cp.nb);
 	}
 	else
 		ft_printf("Wrong argument\n");
@@ -163,5 +164,7 @@ int			main(int ac, char **av)
 		if (ac > i + 1)
 			ft_printf("\n");
 	}
+	while (1)
+		;
 	return (0);
 }

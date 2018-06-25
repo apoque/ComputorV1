@@ -38,6 +38,7 @@ SRC_NAME = \
 		   main.c \
 		   annex.c \
 		   solver.c \
+		   second_degree.c \
 
 
 OBJ_NAME = $(SRC_NAME:.c=.o)

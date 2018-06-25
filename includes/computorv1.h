@@ -35,4 +35,7 @@ long double	ft_negpower(int i);
 void		ft_iseq(char *str, int *i, short *eq);
 void		ft_isneg(char *str, int *i, short *neg);
 void		ft_solve(t_comp *cp);
+void		ft_second_degree(t_comp *cp);
+long double	ft_float_square(long double nb);
+void		ft_printfloat(long double nb);
 #endif

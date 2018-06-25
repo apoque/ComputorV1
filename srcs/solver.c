@@ -47,14 +47,19 @@ void	ft_first_degree(t_comp *cp)
 
 void	ft_dispatch(t_comp *cp)
 {
-	if (cp->power > 2)
+	if (cp->new_power > 2)
 		ft_putstr(MSG);
-	else if (cp->power == 1)
+	else if (cp->new_power == 1)
 		ft_first_degree(cp);
-	else if (cp->power == 0)
+	else if (cp->new_power == 0)
 	{
-		//SUITE
+		if (cp->nb[0][0] == 0)
+			ft_putstr("The solution is the whole set of real numbers R\n");
+		else
+			ft_putstr("There is no solution to this equation\n");
 	}
+	else
+		ft_second_degree(cp);
 }
 
 void	ft_print_reduced_form(t_comp *cp)
@@ -69,18 +74,18 @@ void	ft_print_reduced_form(t_comp *cp)
 	while (++i <= cp->new_power)
 	{
 		neg = 0;
-		if (cp->nb[0][i] < 0)
+		if (i == 0 || cp->nb[0][i] > 0)
+		{
+			(first == 0) ? first = 1 : ft_printf("+ ");
+			ft_printfloat(cp->nb[0][i]);
+			ft_printf(" * X^%i ", i);
+		}
+		else if (i == 0 || cp->nb[0][i] < 0)
 		{
 			(first == 0) ? ft_printf("-") : ft_printf("- ");
 			ft_printfloat(-cp->nb[0][i]);
 			ft_printf(" * X^%i ", i);
 			first = 1;
-		}
-		else if (cp->nb[0][i] > 0)
-		{
-			(first == 0) ? first = 1 : ft_printf("+ ");
-			ft_printfloat(cp->nb[0][i]);
-			ft_printf(" * X^%i ", i);
 		}
 	}
 	ft_putstr("= 0\n");
@@ -89,7 +94,6 @@ void	ft_print_reduced_form(t_comp *cp)
 void	ft_solve(t_comp *cp)
 {
 	int	i;
-	int	new_power;
 
 	i = 0;
 	while (i <= cp->power)
@@ -97,16 +101,11 @@ void	ft_solve(t_comp *cp)
 		cp->nb[0][i] = cp->nb[0][i] - cp->nb[1][i];
 		i++;
 	}
-	i = 0;
-	new_power = -1;
-	while (i <= cp->power)
-	{
-		if (cp->nb[0][i] != 0)
-			new_power = i;
-		i++;
-	}
-	cp->new_power = new_power;
+	i = cp->power;
+	while (i < 0 && cp->nb[0][i] == 0)
+		i--;
+	cp->new_power = i;
 	ft_print_reduced_form(cp);
-	ft_printf("Polynomial degree: %i\n", new_power);
+	ft_printf("Polynomial degree: %i\n", cp->new_power);
 	ft_dispatch(cp);
 }
