@@ -18,6 +18,11 @@ void	ft_printfloat(long double nb)
 	short	is_decimal;
 	int		nb_bis;
 
+	if (nb < 0)
+	{
+		ft_putchar('-');
+		nb = -nb;
+	}
 	is_decimal = ((nb - (int)nb > 0) ? 1 : 0);
 	ft_putnbr((int)nb);
 	(is_decimal == 1) ? ft_putchar('.') : is_decimal++;
@@ -36,11 +41,6 @@ void	ft_first_degree(t_comp *cp)
 
 	nb = -cp->nb[0][0] / cp->nb[0][1];
 	ft_putstr("The solution is:\n");
-	if (nb < 0)
-	{
-		ft_putchar('-');
-		nb = -nb;
-	}
 	ft_printfloat(nb);
 	ft_putchar('\n');
 }
@@ -82,8 +82,8 @@ void	ft_print_reduced_form(t_comp *cp)
 		}
 		else if (i == 0 || cp->nb[0][i] < 0)
 		{
-			(first == 0) ? ft_printf("-") : ft_printf("- ");
-			ft_printfloat(-cp->nb[0][i]);
+			//(first == 0) ? ft_printf("-") : ft_printf("- ");
+			ft_printfloat(cp->nb[0][i]);
 			ft_printf(" * X^%i ", i);
 			first = 1;
 		}

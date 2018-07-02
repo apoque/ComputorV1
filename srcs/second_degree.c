@@ -23,18 +23,8 @@ void	ft_neg_disc(t_comp *cp, long double disc)
 	ft_putstr("Discriminant is strictly negative, the two solutions are:\n");
 	sol1 = -B / (2 * A);
 	sol2 = ft_float_square(-disc) / (2 * A);
-	if (sol1 < 0)
-	{
-		ft_putchar('-');
-		sol1 = -sol1;
-	}
 	ft_printfloat(sol1);
 	ft_putstr(" + i * ");
-	if (sol2 < 0)
-	{
-		ft_putchar('-');
-		sol2 = -sol2;
-	}
 	ft_printfloat(sol2);
 	ft_putchar('\n');
 	ft_printfloat(sol1);
@@ -49,19 +39,9 @@ void	ft_pos_disc(t_comp *cp, long double disc)
 
 	ft_putstr("Discriminant is strictly positive, the two solutions are:\n");
 	sol = (-B + ft_float_square(disc)) / (2 * A);
-	if (sol < 0)
-	{
-		ft_putchar('-');
-		sol = -sol;
-	}
 	ft_printfloat(sol);
 	ft_putchar('\n');
 	sol = (-B - ft_float_square(disc)) / (2 * A);
-	if (sol < 0)
-	{
-		ft_putchar('-');
-		sol = -sol;
-	}
 	ft_printfloat(sol);
 	ft_putchar('\n');
 }
@@ -76,11 +56,6 @@ void	ft_second_degree(t_comp *cp)
 	{
 		sol = -B / (2 * A);
 		ft_putstr("The solution is:\n");
-		if (sol < 0)
-		{
-			ft_putchar('-');
-			sol = -sol;
-		}
 		ft_printfloat(sol);
 		ft_putchar('\n');
 	}
