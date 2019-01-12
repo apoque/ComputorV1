@@ -6,7 +6,7 @@
 /*   By: apoque <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/15 17:48:07 by apoque            #+#    #+#             */
-/*   Updated: 2018/06/25 17:22:57 by apoque           ###   ########.fr       */
+/*   Updated: 2019/01/12 12:44:25 by apoque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,14 @@
 #define C cp->nb[0][0]
 #define B cp->nb[0][1]
 #define A cp->nb[0][2]
+#define AFF "Discriminant is strictly "
 
-void	ft_neg_disc(t_comp *cp, long double disc)
+void	ft_neg_disc(t_comp *cp, float disc)
 {
-	long double	sol1;
-	long double	sol2;
+	float		sol1;
+	float		sol2;
 
-	ft_putstr("Discriminant is strictly negative, the two solutions are:\n");
+	ft_printf("%snegative(%i), the two solutions are:\n", AFF, (int)disc);
 	sol1 = -B / (2 * A);
 	sol2 = ft_float_square(-disc) / (2 * A);
 	ft_printfloat(sol1);
@@ -33,11 +34,11 @@ void	ft_neg_disc(t_comp *cp, long double disc)
 	ft_putchar('\n');
 }
 
-void	ft_pos_disc(t_comp *cp, long double disc)
+void	ft_pos_disc(t_comp *cp, float disc)
 {
-	long double	sol;
+	float	sol;
 
-	ft_putstr("Discriminant is strictly positive, the two solutions are:\n");
+	ft_printf("%spositive(%i), the two solutions are:\n", AFF, (int)disc);
 	sol = (-B + ft_float_square(disc)) / (2 * A);
 	ft_printfloat(sol);
 	ft_putchar('\n');
@@ -48,15 +49,22 @@ void	ft_pos_disc(t_comp *cp, long double disc)
 
 void	ft_second_degree(t_comp *cp)
 {
-	long double	disc;
-	long double	sol;
+	float	disc;
+	float	sol;
 
 	disc = (B * B) - (4 * A * C);
 	if (disc == 0)
 	{
-		sol = -B / (2 * A);
 		ft_putstr("The solution is:\n");
-		ft_printfloat(sol);
+		sol = -B / (2 * A);
+		if ((int)B % (int)(2 * A) == 0)
+			ft_printfloat(sol);
+		else
+		{
+			ft_putnbr(-B / ft_get_pgcd(B, 2 * A));
+			ft_putstr(" / ");
+			ft_putnbr((2 * A) / ft_get_pgcd(B, 2 * A));
+		}
 		ft_putchar('\n');
 	}
 	else if (disc > 0)

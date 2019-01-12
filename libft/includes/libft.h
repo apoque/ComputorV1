@@ -6,7 +6,7 @@
 /*   By: apoque <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/08 18:59:53 by apoque            #+#    #+#             */
-/*   Updated: 2018/03/13 18:39:39 by apoque           ###   ########.fr       */
+/*   Updated: 2019/01/12 11:55:18 by apoque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,4 +94,5 @@ char				*ft_strrev(char *str);
 char				*ft_itoabase_u(uintmax_t value, char *base);
 char				*ft_strjoinfree(char *to_free, char const *s2);
 char				*ft_strndupfree(char *to_free, int n);
+int					ft_get_pgcd(int a, int b);
 #endif

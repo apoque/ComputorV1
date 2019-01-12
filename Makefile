@@ -6,7 +6,7 @@
 #    By: srossi <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/05 18:08:37 by srossi            #+#    #+#              #
-#    Updated: 2018/06/25 13:54:37 by apoque           ###   ########.fr        #
+#    Updated: 2019/01/11 18:11:53 by apoque           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,6 +37,7 @@ INC_PATH = includes\
 SRC_NAME = \
 		   main.c \
 		   annex.c \
+		   annex2.c \
 		   solver.c \
 		   second_degree.c \
 

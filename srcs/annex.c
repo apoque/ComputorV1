@@ -6,17 +6,27 @@
 /*   By: apoque <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/15 17:48:07 by apoque            #+#    #+#             */
-/*   Updated: 2018/06/25 17:21:50 by apoque           ###   ########.fr       */
+/*   Updated: 2019/01/12 16:11:18 by apoque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "computorv1.h"
+#define C cp->str[info->i]
+#define S cp->str
 
-long double	ft_float_square(long double nb)
+void		ft_get_factor(t_comp *cp, t_info *info)
 {
-	long double		res;
-	short			limit;
-	short			i;
+	info->nb = (info->neg == 0) ? ft_db(S, info->i) : -ft_db(S, info->i);
+	info->neg = 0;
+	while (C != '\0' && (ft_isdigit(C) == 1 || C == '.' || C == ' '))
+		info->i++;
+}
+
+float		ft_float_square(float nb)
+{
+	float		res;
+	short		limit;
+	short		i;
 
 	res = 1;
 	i = 1;
@@ -31,9 +41,9 @@ long double	ft_float_square(long double nb)
 	return (res);
 }
 
-long double	ft_negpower(int i)
+float		ft_negpower(int i)
 {
-	long double nb;
+	float nb;
 
 	nb = 1;
 	while (i > 0)

@@ -6,14 +6,21 @@
 /*   By: apoque <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/15 17:48:07 by apoque            #+#    #+#             */
-/*   Updated: 2018/06/25 18:12:19 by apoque           ###   ########.fr       */
+/*   Updated: 2019/01/12 16:12:18 by apoque           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "computorv1.h"
 #define MSG "The polynomial degree is stricly greater than 2, I can't solve.\n"
+#define A cp->nb[0][2]
+#define B cp->nb[0][1]
+#define C cp->nb[0][0]
 
-void	ft_printfloat(long double nb)
+#define D cp->nb[1][2]
+#define E cp->nb[1][1]
+#define F cp->nb[1][0]
+
+void	ft_printfloat(float nb)
 {
 	short	is_decimal;
 	int		nb_bis;
@@ -37,11 +44,18 @@ void	ft_printfloat(long double nb)
 
 void	ft_first_degree(t_comp *cp)
 {
-	long double	nb;
+	float	nb;
 
 	nb = -cp->nb[0][0] / cp->nb[0][1];
 	ft_putstr("The solution is:\n");
-	ft_printfloat(nb);
+	if ((int)-cp->nb[0][0] % (int)cp->nb[0][1] == 0)
+		ft_printfloat(nb);
+	else
+	{
+		ft_putnbr(-cp->nb[0][0] / ft_get_pgcd(cp->nb[0][0], cp->nb[0][1]));
+		ft_putstr(" / ");
+		ft_putnbr(cp->nb[0][1] / ft_get_pgcd(cp->nb[0][0], cp->nb[0][1]));
+	}
 	ft_putchar('\n');
 }
 
@@ -82,7 +96,6 @@ void	ft_print_reduced_form(t_comp *cp)
 		}
 		else if (i == 0 || cp->nb[0][i] < 0)
 		{
-			//(first == 0) ? ft_printf("-") : ft_printf("- ");
 			ft_printfloat(cp->nb[0][i]);
 			ft_printf(" * X^%i ", i);
 			first = 1;
@@ -91,7 +104,7 @@ void	ft_print_reduced_form(t_comp *cp)
 	ft_putstr("= 0\n");
 }
 
-void	ft_solve(t_comp *cp)
+void	ft_solve(t_comp *cp, int detail)
 {
 	int	i;
 
@@ -99,6 +112,8 @@ void	ft_solve(t_comp *cp)
 	while (i <= cp->power)
 	{
 		cp->nb[0][i] = cp->nb[0][i] - cp->nb[1][i];
+		if (detail == 1 && cp->nb[1][i] != 0)
+			ft_display_detail(cp, i);
 		i++;
 	}
 	i = cp->power;
