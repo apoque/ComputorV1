@@ -6,7 +6,7 @@
 #    By: apoque <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/08 18:56:29 by apoque            #+#    #+#              #
-#    Updated: 2018/06/25 17:07:33 by apoque           ###   ########.fr        #
+#    Updated: 2019/01/12 11:56:06 by apoque           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -103,6 +103,7 @@ SRC_NAME=ft_memset.c\
 		ft_char.c\
 		ft_conv_wchar.c\
 		ft_percent.c\
+		ft_get_pgcd.c\
 
 
 
